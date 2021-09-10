@@ -1,0 +1,171 @@
+  [1m[35m (272.8ms)[0m  [1m[35mCREATE DATABASE "rating_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (70.2ms)[0m  [1m[35mCREATE DATABASE "rating_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (24.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (25.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1760810850378852615)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCities (20210823124855)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (28.4ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying, "image_url" character varying, "slug" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210823124855"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateReviews (20210823125408)
+  [1m[36mTRANSACTION (11.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (32.5ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" bigserial primary key, "title" character varying, "description" character varying, "score" integer, "city_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_ccfd8649ad"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_reviews_on_city_id" ON "reviews" ("city_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210823125408"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (7.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-09-10 12:09:16.210509"], ["updated_at", "2021-09-10 12:09:16.210509"]]
+  [1m[36mTRANSACTION (21.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(1760810850378852615)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Create (2.8ms)[0m  [1m[32mINSERT INTO "cities" ("name", "image_url", "slug", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Prishtina, KS"], ["image_url", "https://upload.wikimedia.org/wikipedia/commons/a/a1/Flag_of_Pristina.png"], ["slug", "prishtina-ks"], ["created_at", "2021-09-10 12:09:30.816308"], ["updated_at", "2021-09-10 12:09:30.816308"]]
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "image_url", "slug", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Belgrade, RS"], ["image_url", "https://upload.wikimedia.org/wikipedia/commons/f/f0/Belgrad_%28Zemun%29_-_Kula_Sibinjanin_Janka.jpg"], ["slug", "belgrade-rs"], ["created_at", "2021-09-10 12:09:30.923517"], ["updated_at", "2021-09-10 12:09:30.923517"]]
+  [1m[36mTRANSACTION (31.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "image_url", "slug", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Sofia, BG"], ["image_url", "https://upload.wikimedia.org/wikipedia/commons/c/cc/Sofia_333.jpg"], ["slug", "sofia-bg"], ["created_at", "2021-09-10 12:09:30.961462"], ["updated_at", "2021-09-10 12:09:30.961462"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "image_url", "slug", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Athens, GR"], ["image_url", "https://en.wikipedia.org/wiki/Acropolis_of_Athens#/media/File:The_Acropolis_of_Athens_viewed_from_the_Hill_of_the_Muses_(14220794964).jpg"], ["slug", "athens-gr"], ["created_at", "2021-09-10 12:09:30.967579"], ["updated_at", "2021-09-10 12:09:30.967579"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "image_url", "slug", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Tirana, AL"], ["image_url", "https://upload.wikimedia.org/wikipedia/commons/0/0d/Skanderbeg_square_tirana_2016.jpg"], ["slug", "tirana-al"], ["created_at", "2021-09-10 12:09:30.972168"], ["updated_at", "2021-09-10 12:09:30.972168"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "image_url", "slug", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Podgorica, MN"], ["image_url", "https://upload.wikimedia.org/wikipedia/commons/4/4b/PodgoricaOverview.jpg"], ["slug", "podgorica-mn"], ["created_at", "2021-09-10 12:09:30.976696"], ["updated_at", "2021-09-10 12:09:30.976696"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mReview Create (8.8ms)[0m  [1m[32mINSERT INTO "reviews" ("title", "description", "score", "city_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Great city!"], ["description", "I had so much fun. Very friendly!"], ["score", 5], ["city_id", 1], ["created_at", "2021-09-10 12:09:31.003368"], ["updated_at", "2021-09-10 12:09:31.003368"]]
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mReview Create (0.5ms)[0m  [1m[32mINSERT INTO "reviews" ("title", "description", "score", "city_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "It's fine"], ["description", "Very polluted"], ["score", 1], ["city_id", 1], ["created_at", "2021-09-10 12:09:31.023062"], ["updated_at", "2021-09-10 12:09:31.023062"]]
+  [1m[36mTRANSACTION (5.0ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2021-09-10 13:11:03 +0100
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CitiesController):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2021-09-10 13:11:06 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2021-09-10 13:11:15 +0100
+  
+ActionController::RoutingError (uninitialized constant CitiesController):
+  
+Started GET "/api/v1/citties" for ::1 at 2021-09-10 13:11:27 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/citties"):
+  
+Started GET "/" for ::1 at 2021-09-10 13:13:06 +0100
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CitiesController):
+  
+Started GET "/" for ::1 at 2021-09-10 13:16:09 +0100
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Library/Ruby/Gems/2.6.0/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Library/Ruby/Gems/2.6.0/gems/railties-6.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.3ms | Allocations: 196)
+Completed 200 OK in 23ms (Views: 8.4ms | ActiveRecord: 0.0ms | Allocations: 2275)
+
+
+Started GET "/api/v1/cities" for ::1 at 2021-09-10 13:16:21 +0100
+Processing by Api::V1::CitiesController#index as HTML
+  [1m[36mCity Load (0.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (24.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 1]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (6.5ms)[0m  [1m[34mSELECT AVG("reviews"."score") FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 1]]
+  ↳ app/models/city.rb:13:in `avg_score'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 1]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 1]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 2]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 2]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 2]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (6.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 3]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 3]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.9ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 3]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 4]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 4]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 4]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 5]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 5]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 5]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 6]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 6]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 6]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+Completed 200 OK in 136ms (Views: 0.2ms | ActiveRecord: 53.7ms | Allocations: 27008)
+
+
+Started GET "/api/v1/cities" for ::1 at 2021-09-10 13:38:26 +0100
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::CitiesController#index as HTML
+  [1m[36mCity Load (1.4ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 1]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT AVG("reviews"."score") FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 1]]
+  ↳ app/models/city.rb:13:in `avg_score'
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 1]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 1]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 2]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 2]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 2]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 3]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 3]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 3]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 4]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 4]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 4]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 5]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 5]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 5]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 6]]
+  ↳ app/models/city.rb:11:in `avg_score'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "reviews"."id" FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 6]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."city_id" = $1[0m  [["city_id", 6]]
+  ↳ app/controllers/api/v1/cities_controller.rb:8:in `index'
+Completed 200 OK in 228ms (Views: 0.5ms | ActiveRecord: 67.3ms | Allocations: 26910)
+
+
